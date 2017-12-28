@@ -55,23 +55,50 @@ class CarsController extends Controller
         $user_id = Auth::id();
 
         if (!$category_id) {
+
             $message = 'Morate izabrati kategoriju automobila.';
             array_push($errors, $message);
-        } elseif (!$name) {
-            $message = 'Morate uneti naziv automobila.';
+
+        } elseif (!$name || is_numeric($name)) {
+
+            if (is_numeric($name)) {
+                $message = 'Naziv automobila nije unet u dobrom formatu.';
+            } else {
+                $message = 'Morate uneti naziv automobila.';
+            }
+
             array_push($errors, $message);
-        } elseif (!$price) {
-            $message = 'Morate uneti cenu automobila.';
+
+        } elseif (!$price || !is_numeric($price)) {
+
+            if (!is_numeric($price) && $price) {
+                $message = 'Cena nije uneta u dobrom formatu.';
+            } else {
+                $message = 'Morate uneti cenu automobila.';
+            }
+
             array_push($errors, $message);
+
         } elseif (!$year) {
+
             $message = 'Morate izabrati godinu proizvodnje automobila.';
             array_push($errors, $message);
-        } elseif (!$km) {
-            $message = 'Morate uneti pređenu kilometražu.';
+
+        } elseif (!$km || !is_numeric($km)) {
+
+            if (!is_numeric($km) && $km) {
+                $message = 'Kilometraža nije uneta u dobrom formatu.';
+            } else {
+                $message = 'Morate uneti pređenu kilometražu.';
+            }
+
             array_push($errors, $message);
+
         } elseif (!$image) {
+
             $message = 'Morate postaviti sliku automobila.';
             array_push($errors, $message);
+
         }
 
         if (count($errors)) {
@@ -132,6 +159,44 @@ class CarsController extends Controller
         $year = $request->input('car_year');
         $km = $request->input('car_km');
         $description = $request->input('car_description');
+
+        if (!$name || is_numeric($name)) {
+
+            if (is_numeric($name)) {
+                $request->session()->flash('alert-danger', 'Naziv automobila nije unet u dobrom formatu!');
+            } else {
+                $request->session()->flash('alert-danger', 'Morate uneti naziv automobila!');
+            }
+
+            return redirect()->to('edit/ad/' . $id);
+
+        } elseif (!$price || !is_numeric($price)) {
+
+            if (!is_numeric($price) && $price) {
+                $request->session()->flash('alert-danger', 'Cena nije uneta u dobrom formatu!');
+            } else {
+                $request->session()->flash('alert-danger', 'Morate uneti cenu automobila!');
+            }
+
+            return redirect()->to('edit/ad/' . $id);
+
+        } elseif (!$year) {
+
+            $request->session()->flash('alert-danger', 'Morate izabrati godinu proizvodnje automobila!');
+
+            return redirect()->to('edit/ad/' . $id);
+
+        } elseif (!$km || !is_numeric($km)) {
+
+            if (!is_numeric($km) && $km) {
+                $request->session()->flash('alert-danger', 'Kilometraža nije uneta u dobrom formatu!');
+            } else {
+                $request->session()->flash('alert-danger', 'Morate uneti pređenu kilometražu!');
+            }
+
+            return redirect()->to('edit/ad/' . $id);
+
+        }
 
         if ($request->hasFile('car_image')) {
 

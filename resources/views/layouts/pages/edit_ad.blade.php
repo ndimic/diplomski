@@ -26,7 +26,12 @@
                     <label>Cena:</label>
                     <input type="text" class="form-control editWidth" name="car_price" value="{{ $car->price }}"><br>
                     <label>Godište:</label>
-                    <input type="text" class="form-control editWidth" name="car_year" value="{{ $car->year }}"><br>
+                    <select class="form-control editWidth" name="car_year">
+                        <option name="car_year" value="0">Izaberite godinu proizvodnje...</option>
+                        @for ($i = 1980; $i <= 2017; $i++)
+                            <option value="{{ $i }}" {{ $i == $car->year ? "selected" : "" }}>{{ $i }}</option>
+                        @endfor
+                    </select><br>
                     <label>Kilometraža:</label>
                     <input type="text" class="form-control editWidth" name="car_km" value="{{ $car->km }}"><br>
                     <label>Slika:</label> {{ $car->image }}

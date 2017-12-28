@@ -37,7 +37,7 @@
                     <input type="text" class="form-control" name="car_name" placeholder="Unesite naziv automobila..."/><br>
                     </div>
                     <div class="form-group required">
-                    <label>Cena: </label>
+                    <label>Cena (u evrima): </label>
                     <input type="text" class="form-control" name="car_price" placeholder="Unesite cenu automobila..."/><br>
                     </div>
                     <div class="form-group required">

@@ -15,18 +15,21 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->insert([
             'name' => 'BMW',
+            'logo' => 'bmw_logo.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
             'name' => 'Audi',
+            'logo' => 'audi_logo.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         DB::table('categories')->insert([
             'name' => 'Mercedes',
+            'logo' => 'mercedes_logo.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
