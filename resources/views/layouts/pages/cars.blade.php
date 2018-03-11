@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends( 'layouts.master' )
 
-@section('content')
+@section( 'content' )
 
     <!-- Page Content -->
     <div class="container">
@@ -15,28 +15,31 @@
         </div>
         <!-- /.row -->
 
-    @foreach($cars as $car)
+    @foreach ( $cars as $car )
 
-        <!-- Project One -->
+            <!-- Car -->
             <div class="row">
+
                 <div class="col-md-6">
-                    <a href="{{ 'car/' .$car->id }}">
-                        {{--@if ($car->external == 1)
-                            <img class="img-responsive" src="{{ $car->image }}" alt="">
-                        @else--}}
-                        <img class="img-responsive" src="{{ url('/images/' .$car['image']) }}" alt="">
-                        {{--@endif--}}
+
+                    <a href="{{ 'car/' . $car->id }}">
+                        <img class="img-responsive" src="{{ url( '/images/' .$car['image'] ) }}" alt="">
                     </a>
+
                 </div>
+
                 <div class="col-md-6">
+
                     <h3 align="center" class="border">{{ $car->name }}</h3>
                     <h3 align="center" class="border" style="background-color: orange; color: #fff;">{{ $car->price }} €</h3>
                     <h3 align="center" class="border" style="background: #5aa700; color: #fff;">{{ $car->year }}. godište</h3>
-                    <div align="center"><img class="img-responsive" src="{{ url('/images/' . $car->category->logo) }}" alt=""></div>
-                </div>
-            </div>
+                    <div align="center">
+                        <img class="img-responsive" src="{{ url( '/images/' . $car->category->logo ) }}" alt="">
+                    </div>
 
-            <!-- /.row -->
+                </div>
+
+            </div>
 
             <hr>
         @endforeach
@@ -45,18 +48,16 @@
 
     <!-- Pagination -->
     <div class="row text-center">
+
         <div class="col-lg-12">
+
             {{ $cars->links() }}
+
         </div>
+
     </div>
 
     <!-- Footer -->
-    <footer class="footer_custom">
-        <div align="center" class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Oglasi - Polovni automobili 2017</p>
-            </div>
-        </div>
-        <!-- /.row -->
-    </footer>
+    @include( 'layouts.partials.footer' )
+
 @endsection
