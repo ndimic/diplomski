@@ -38,22 +38,23 @@
 					godište</h3>
 				<h3 align="center" class="border" style="background-color: #29aade; color: #fff;">{{ $car->km }}km.</h3>
 				
-				@if ( $car->created_at->diffInMinutes() > 60 && $car->created_at->diffInHours() < 24 )
+				<h3 align="center" class="border" style="background-color: #2a91af; color: #fff;">Postavljeno:
 					
-					<h3 align="center" class="border" style="background-color: #2a91af; color: #fff;">Postavljeno:
-						pre {{ $car->created_at->diffInHours() }} sata.</h3>
-				
-				@elseif ( $car->created_at->diffInHours() > 24 )
+					@if ( $car->created_at->diffInMinutes() > 60 && $car->created_at->diffInHours() < 24 )
+						
+						pre {{ $car->created_at->diffInHours() }} sata.
 					
-					<h3 align="center" class="border" style="background-color: #2a91af; color: #fff;">Postavljeno:
-						pre {{ $car->created_at->diffInDays() }} dana.</h3>
-				
-				@else
+					@elseif ( $car->created_at->diffInHours() > 24 )
+						
+						pre {{ $car->created_at->diffInDays() }} dana.
 					
-					<h3 align="center" class="border" style="background-color: #2a91af; color: #fff;">Postavljeno:
-						pre {{ $car->created_at->diffInMinutes() }} minuta.</h3>
+					@else
+						
+						pre {{ $car->created_at->diffInMinutes() }} minuta.
+					
+					@endif
 				
-				@endif
+				</h3>
 				
 				<h3 align="center" class="border" style="background-color: #575757; color: #fff;">Broj
 					oglasa: {{ $car->id }}</h3>
