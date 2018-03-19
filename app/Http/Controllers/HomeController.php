@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Car;
+
 class HomeController extends Controller
 {
 	/**
@@ -19,6 +21,8 @@ class HomeController extends Controller
 	 */
 	public function index()
 	{
-		return view( 'layouts.pages.home' );
+		$car = Car::whereDefault( 1 )->first();
+		
+		return view( 'layouts.pages.home', compact( 'car' ) );
 	}
 }

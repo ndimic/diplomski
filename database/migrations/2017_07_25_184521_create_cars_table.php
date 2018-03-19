@@ -22,7 +22,8 @@ class CreateCarsTable extends Migration
 			$table->integer( 'year' )->nullable();
 			$table->integer( 'km' )->nullable();
 			$table->string( 'image' )->nullable();
-			$table->integer( 'status' )->default( 0 );
+			$table->boolean( 'status' )->default( 0 );
+			$table->boolean( 'default' )->default( 0 );
 			$table->string( 'description' )->nullable();
 			$table->integer( 'user_id' )->default( 1 );
 			$table->timestamps();

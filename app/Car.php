@@ -1,9 +1,12 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Behaviors\Upload;
 
 class Car extends Model
 {
+	use Upload;
+	
 	public $timestamps = true;
 	
 	protected $fillable = [
@@ -18,10 +21,6 @@ class Car extends Model
 	];
 	
 	protected $table = 'cars';
-	
-	/*public function categories() {
-		return $this->hasOne(Category::class);
-	}*/
 	
 	public function category()
 	{

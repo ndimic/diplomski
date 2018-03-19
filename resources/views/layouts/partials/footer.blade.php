@@ -4,7 +4,7 @@
 		
 		<div class="col-lg-12">
 			
-			<p>Copyright &copy; Oglasi - Polovni automobili 2017</p>
+			<p>Copyright &copy; Oglasi - Polovni automobili <?= \Carbon\Carbon::now()->year ?></p>
 		
 		</div>
 	

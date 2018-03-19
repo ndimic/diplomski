@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
 			//$table->foreign('id')->references('category_id')->on('cars');
 			$table->string( 'name' );
 			$table->string( 'logo' )->nullable();
+			$table->boolean( 'default' )->default( 0 );
 			$table->timestamps();
 		} );
 	}

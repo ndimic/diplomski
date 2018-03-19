@@ -21,6 +21,8 @@ class CarsTableSeeder extends Seeder
 			'km'          => '20000',
 			'image'       => 'bmw_x3.jpg',
 			'status'      => 1,
+			'default'     => 1,
+			'description' => '',
 			'created_at'  => Carbon::now(),
 			'updated_at'  => Carbon::now()
 		] );
@@ -33,6 +35,8 @@ class CarsTableSeeder extends Seeder
 			'km'          => '10000',
 			'image'       => 'audi_q7.png',
 			'status'      => 1,
+			'default'     => 1,
+			'description' => '',
 			'created_at'  => Carbon::now(),
 			'updated_at'  => Carbon::now()
 		] );
@@ -45,6 +49,8 @@ class CarsTableSeeder extends Seeder
 			'km'          => '15000',
 			'image'       => 'mercedes_c_class.png',
 			'status'      => 1,
+			'default'     => 1,
+			'description' => '',
 			'created_at'  => Carbon::now(),
 			'updated_at'  => Carbon::now()
 		] );

@@ -16,6 +16,7 @@ class CategoriesTableSeeder extends Seeder
 		DB::table( 'categories' )->insert( [
 			'name'       => 'BMW',
 			'logo'       => 'bmw_logo.jpg',
+			'default'    => 1,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now()
 		] );
@@ -23,6 +24,7 @@ class CategoriesTableSeeder extends Seeder
 		DB::table( 'categories' )->insert( [
 			'name'       => 'Audi',
 			'logo'       => 'audi_logo.png',
+			'default'    => 1,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now()
 		] );
@@ -30,6 +32,7 @@ class CategoriesTableSeeder extends Seeder
 		DB::table( 'categories' )->insert( [
 			'name'       => 'Mercedes',
 			'logo'       => 'mercedes_logo.jpg',
+			'default'    => 1,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now()
 		] );

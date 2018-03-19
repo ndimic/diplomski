@@ -7,7 +7,8 @@ class Category extends Model
 	public $timestamps = true;
 	
 	public static $rules = [
-		'name' => 'required'
+		'name' => 'required',
+		'logo' => 'required|file'
 	];
 	
 	protected $table = 'categories';

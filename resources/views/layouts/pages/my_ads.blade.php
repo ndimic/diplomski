@@ -29,11 +29,15 @@
 					<div class="col-md-6">
 						
 						<a href="{{ 'edit/ad/' .$car->id }}">
-							{{--@if ($car/->external == 1)
-								<img class="img-responsive" src="{{ $car->image }}" alt="">
-							@else--}}
-							<img class="img-responsive" src="{{ url('/images/' .$car['image']) }}" alt="">
-							{{--@endif--}}
+							
+							@if ( $car->default == 0 )
+								<img class="img-responsive" src="{{ url( '/storage/car_uploads/' .$car->image ) }}"
+								     alt="">
+							@else
+								<img class="img-responsive" src="{{ url( '/images/' .$car['image'] ) }}"
+								     alt="">
+							@endif
+						
 						</a>
 					
 					</div>
@@ -95,7 +99,7 @@
 	
 	</div>
 	
-	<!-- Pagination -->
+	<!i-- Pagination -->
 	<div class="row text-center">
 		
 		<div class="col-lg-12">

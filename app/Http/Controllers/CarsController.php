@@ -4,31 +4,29 @@ use App\Car;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Behaviors\Upload;
 
 class CarsController extends Controller
 {
-	function __construct()
-	{
-		//include_once('simple_html_dom.php');
-	}
+	use Upload;
 	
 	public function index()
 	{
-		$allCars = Car::where( 'status', 1 )->get();
+		$allCars = Car::whereStatus( 1 )->get();
 		
 		if ( count( $allCars ) > 10 ) {
 			
 			// Number of cars per page
 			$paginate = 4;
 			
-			$cars = Car::where( 'status', 1 )->with( 'category' )->paginate( $paginate );
+			$cars = Car::whereStatus( 1 )->with( 'category' )->paginate( $paginate );
 			
 		} else {
 			
 			// Number of cars per page
 			$paginate = 3;
 			
-			$cars = Car::where( 'status', 1 )->with( 'category' )->paginate( $paginate );
+			$cars = Car::whereStatus( 1 )->with( 'category' )->paginate( $paginate );
 			
 		}
 		
@@ -37,14 +35,14 @@ class CarsController extends Controller
 	
 	public function carDetails( $id )
 	{
-		$car = Car::where( 'id', $id )->with( 'category' )->first();
+		$car = Car::whereId( $id )->with( 'category' )->first();
 		
 		return view( 'layouts.pages.car', compact( 'car' ) );
 	}
 	
 	public function addCar()
 	{
-		$categories = Category::where( 'name', '!=', 'Audi' )->get();
+		$categories = Category::all();
 		
 		return view( 'layouts.pages.add_car', compact( 'categories' ) );
 	}
@@ -77,11 +75,10 @@ class CarsController extends Controller
 		
 		// Uploading picture
 		
-		$imageCar        = $request->file( 'car_image' );
-		$imageName       = time() . '.' . $imageCar->getClientOriginalName();
-		$destinationPath = public_path( '/images', $imageCar->getClientOriginalName() );
-		$imageCar->move( $destinationPath, $imageName );
-		$image = $imageName;
+		$imageCar  = $request->file( 'car_image' );
+		$imageName = time() . '.' . $imageCar->getClientOriginalName();
+		
+		$this->upload( $imageCar, $imageName );
 		
 		// Inserting car in database
 		
@@ -91,21 +88,21 @@ class CarsController extends Controller
 			'price'       => $request->get( 'car_price' ),
 			'year'        => $request->get( 'car_year_id' ),
 			'km'          => $request->get( 'car_km' ),
-			'image'       => $image,
+			'image'       => $imageName,
 			'description' => $request->get( 'car_description' ) ? $request->get( 'car_description' ) : '',
 			'user_id'     => Auth::id()
 		] );
 		
 		$request->session()->flash( 'alert-success', 'Oglas je uspešno dodat! Naši administatori će razmotriti Vaš oglas.' );
 		
-		return redirect()->action( 'CarsController@addCar' )->with( 'success', 'Oglas uspesan test!' );
+		return redirect()->route( 'add_car' );
 	}
 	
 	public function userAds()
 	{
-		$cars = Car::where( 'user_id', Auth::id() )->with( 'category' )->paginate( 3 );
+		$cars = Car::whereUserId( Auth::id() )->with( 'category' )->paginate( 3 );
 		
-		return view( 'layouts.pages.my_ads', compact( 'cars', 'now' ) );
+		return view( 'layouts.pages.my_ads', compact( 'cars' ) );
 	}
 	
 	public function editMyAd( $id )
@@ -170,10 +167,10 @@ class CarsController extends Controller
 			$destinationPath = public_path( '/images', $new->getClientOriginalName() );
 			$new->move( $destinationPath, $imageName );
 			
-			Car::where( 'id', $id )->update( [ 'image' => $imageName ] );
+			Car::whereId( $id )->update( [ 'image' => $imageName ] );
 		}
 		
-		Car::where( 'id', $id )->update( [
+		Car::whereId( $id )->update( [
 			'name'        => $name,
 			'price'       => $price,
 			'year'        => $year,
@@ -199,16 +196,16 @@ class CarsController extends Controller
 		
 		if ( $id ) {
 			
-			Car::where( 'id', $id )->update( [ 'status' => 1 ] );
+			Car::whereId( $id )->update( [ 'status' => 1 ] );
 			
 			$request->session()->flash( 'alert-success', 'Oglas je odobren!' );
 			
-			return redirect()->action( 'CarsController@adminListCars' );
+			return redirect()->route( 'admin_list' );
 		}
 		
 		$request->session()->flash( 'alert-danger', 'Oglas nije odobren!' );
 		
-		return redirect()->action( 'CarsController@adminListCars' );
+		return redirect()->route( 'admin_list' );
 	}
 	
 	public function deleteCar( Request $request )
@@ -217,16 +214,16 @@ class CarsController extends Controller
 		
 		if ( $id ) {
 			
-			Car::where( 'id', $id )->update( [ 'status' => 0 ] );
+			Car::whereId( $id )->update( [ 'status' => 0 ] );
 			
 			$request->session()->flash( 'alert-info', 'Oglas je neodobren!' );
 			
-			return redirect()->action( 'CarsController@adminListCars' );
+			return redirect()->route( 'admin_list' );
 		}
 		
 		$request->session()->flash( 'alert-danger', 'Oglas nije izbrisan!' );
 		
-		return redirect()->action( 'CarsController@adminListCars' );
+		return redirect()->route( 'admin_list' );
 	}
 	
 	public function searchCar()
@@ -240,7 +237,7 @@ class CarsController extends Controller
 	{
 		if ( $request->ajax() ) {
 			
-			$cars = Car::where( 'category_id', $request->category_id )->where( 'status', 1 )->get();
+			$cars = Car::whereCategoryId( $request->category_id )->whereStatus( 1 )->get();
 			
 			if ( count( $cars ) ) {
 				$request->session()->flash( 'alert-warning', 'Pronadjeni su sledeci oglasi.' );
@@ -251,70 +248,5 @@ class CarsController extends Controller
 			return view( 'layouts.pages.search_result', compact( 'cars' ) )->render();
 		}
 	}
-	
-	/*public function dataAction()
-	{
-		//$data = file_get_contents('https://www.polovniautomobili.com/putnicka-vozila/pretraga?page=1&brand=38&model=&price_from=40000&price_to=&year_from=&year_to=&door_num=&submit_1=&without_price=1&date_limit=&showOldNew=all&modeltxt=&engine_volume_from=&engine_volume_to=&power_from=&power_to=&mileage_from=&mileage_to=&emission_class=&seat_num=&wheel_side=&registration=&country=&city=&page=&sort=');
-		$data = file_get_contents('https://www.polovniautomobili.com/putnicka-vozila/pretraga?brand=38&model=&price_from=75000&price_to=&year_from=&year_to=&door_num=&submit_1=&without_price=1&date_limit=&showOldNew=all&modeltxt=&engine_volume_from=&engine_volume_to=&power_from=&power_to=&mileage_from=&mileage_to=&emission_class=&seat_num=&wheel_side=&registration=&country=&city=&page=&sort=');
-
-		$element_title = 'a[class=ga-title]';
-		$element_price = 'span[class=price]';
-		$title = $this->getTextBetweenTags($data, $element_title);
-		$images = [];
-		foreach($title as $t){
-			$element_image = 'img[alt=' . $t . ']';
-			$image = $this->getTextBetweenTags($data, $element_image);
-			$images[] = $image;
-		}
-		$price = $this->getTextBetweenTags($data, $element_price);
-
-		$import_data = [];
-		$count_data = count($title);
-
-		for ($i = 0; $i < $count_data; $i++) {
-			$import_data[$i]['name'] = $title[$i];
-		}
-
-		for ($i = 0; $i < $count_data; $i++) {
-			//$key = 4 + $i;
-			$import_data[$i]['price'] = $price[$i];
-		}
-
-		for ($i = 0; $i < $count_data; $i++) {
-			$import_data[$i]['image'] = $images[1][0];
-		}
-
-		//TODO: Nedostaju slika, godiste i kilometraza
-		foreach ($import_data as $data) {
-			$car = new Car;
-			$car->name = $data['name'];
-			$car->price = $data['price'];
-			$car->image = $data['image'];
-			$car->category_id = 2;
-			$car->status = 0;
-			$car->external = 1;
-			$car->save();
-		}
-
-		return redirect()->action('CarsController@adminListCars');
-	}
-
-	private function getTextBetweenTags($string, $element) {
-		// Create DOM from string
-		$html = str_get_html($string);
-
-		$data = array();
-		// Find all tags
-		foreach($html->find($element) as $k => $element) {
-			if(isset($element->attr['src'])){
-				$data[] = $element->attr['src'];
-			}else{
-				$data[] = $element->plaintext;
-			}
-		}
-
-		return $data;
-	}*/
-	
 	
 }
