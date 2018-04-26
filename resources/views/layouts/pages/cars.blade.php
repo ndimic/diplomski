@@ -15,46 +15,111 @@
 				</div>
 			</div>
 			<!-- /.row -->
-		
-		@foreach ( $cars as $car )
+			
+			
 			
 			<!-- Car -->
-				<div class="row">
+			<div class="row">
+				
+				<div class="col-md-5">
 					
-					<div class="col-md-6">
+					@foreach ( $cars as $car )
 						
 						<a href="{{ 'car/' . $car->id }}">
 							
 							@if ( $car->default == 0 )
-								<img class="img-responsive" src="{{ url( '/storage/car_uploads/' .$car->image ) }}"
+								<img height="275px" class="img-responsive"
+								     src="{{ url( '/storage/car_uploads/' .$car->image ) }}"
 								     alt="">
 							@else
-								<img class="img-responsive" src="{{ url( '/images/' .$car['image'] ) }}"
+								<img height="275px" class="img-responsive" src="{{ url( '/images/' .$car['image'] ) }}"
 								     alt="">
 							@endif
 						
 						</a>
-					
-					</div>
-					
-					<div class="col-md-6">
 						
-						<h3 align="center" class="border">{{ $car->name }}</h3>
+						<br><br><br>
+					
+					@endforeach
+				
+				</div>
+				
+				<div class="col-md-4">
+					
+					@foreach ( $cars as $key => $car )
+						
+						<h3 @if ($key > 0) style="margin-top: 80px" @endif align="center"
+						    class="border">{{ $car->name }}</h3>
 						<h3 align="center" class="border"
 						    style="background-color: orange; color: #fff;">{{ $car->price }}
 							€</h3>
 						<h3 align="center" class="border" style="background: #5aa700; color: #fff;">{{ $car->year }}.
 							godište</h3>
 						<div align="center">
-							<img class="img-responsive" src="{{ url( '/images/' . $car->category->logo ) }}" alt="">
+							<img class="img-responsive" style="width: 70px;"
+							     src="{{ url( '/images/' . $car->category['logo'] ) }}" alt="">
 						</div>
+						
+						<br><br><br>
 					
-					</div>
+					@endforeach
 				
 				</div>
 				
-				<hr>
-		@endforeach
+				<div class="col-md-3">
+					
+					<h3 align="center" class="border">Filter</h3>
+					
+					<form method="post" action="{{ '/cars-results' }}">
+						
+						{!! csrf_field() !!}
+						
+						<select class="form-control" id="search_category_id" name="category">
+							
+							<option value="0">Izaberite katergoriju...</option>
+							
+							@foreach ( $categories as $category )
+								
+								<option value="{{ $category->id }}">
+									{{ $category->name }}
+								</option>
+							
+							@endforeach
+						
+						</select><br>
+						
+						<input class="form-control" placeholder="Cena do" type="number" name="price"/><br>
+						
+						<select class="form-control" name="car_year_from">
+							
+							<option value="">Godiste od</option>
+							
+							@for ( $i = 1980; $i <= 2018; $i++ )
+								<option value="{{ $i }}">{{ $i }} god.</option>
+							@endfor
+						
+						</select><br>
+						
+						<select class="form-control" name="car_year_to">
+							
+							<option value="">Godiste do</option>
+							
+							@for ( $i = 1980; $i <= 2018; $i++ )
+								<option value="{{ $i }}">{{ $i }} god.</option>
+							@endfor
+						
+						</select><br>
+						
+						<button type="submit" id="searchCar" class="form-control">Pretraži</button>
+					
+					</form>
+				
+				</div>
+			
+			</div>
+			
+			<hr>
+	
 	
 	@else
 		

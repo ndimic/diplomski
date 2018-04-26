@@ -12,9 +12,9 @@
 				
 				<div class="col-lg-12">
 					
-					<h1 class="page-header">Moji oglasi
-						<small>Polovni automobili</small>
-					</h1>
+					<h2 class="page-header">Moji oglasi
+						<small></small>
+					</h2>
 				
 				</div>
 			
@@ -31,10 +31,12 @@
 						<a href="{{ 'edit/ad/' .$car->id }}">
 							
 							@if ( $car->default == 0 )
-								<img class="img-responsive" src="{{ url( '/storage/car_uploads/' .$car->image ) }}"
+								<img style="height: 275px !important;" class="img-responsive"
+								     src="{{ url( '/storage/car_uploads/' .$car->image ) }}"
 								     alt="">
 							@else
-								<img class="img-responsive" src="{{ url( '/images/' .$car['image'] ) }}"
+								<img style="height: 275px !important;" class="img-responsive"
+								     src="{{ url( '/images/' .$car['image'] ) }}"
 								     alt="">
 							@endif
 						

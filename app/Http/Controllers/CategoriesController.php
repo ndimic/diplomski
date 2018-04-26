@@ -67,7 +67,7 @@ class CategoriesController extends Controller
 	{
 		$id = $request->input( 'category_id' );
 		
-		Category::find( $id )->delete();
+		$category = Category::find( $id )->delete();
 		
 		$request->session()->flash( 'alert-success', 'Kategorija je uspešno izbrisana!' );
 		

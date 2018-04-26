@@ -58,19 +58,23 @@
 					</h1>
 					
 					@if ( $category->default == 0 )
-						<img class="img-responsive" src="{{ url( '/storage/car_uploads/' . $category->logo ) }}"
+						<img class="img-responsive" style="width: 70px;"
+						     src="{{ url( '/storage/car_uploads/' . $category->logo ) }}"
 						     alt="">
 					@else
-						<img class="img-responsive" src="{{ url( '/images/' . $category->logo ) }}"
+						<img class="img-responsive" style="width: 70px;"
+						     src="{{ url( '/images/' . $category->logo ) }}"
 						     alt="">
 					@endif
 					
-					<form method="post" action="{{ '/deleteCategory' }}">
+					<br>
+					
+					{{--<form method="post" action="{{ '/deleteCategory' }}">
 						{!! csrf_field() !!}
 						<input type="hidden" name="category_id" value="{{ $category->id }}"/>
 						<button type="submit" class="form-control" style="color:red;">Obriši kategoriju</button>
 					</form>
-					<br>
+					<br>--}}
 					
 					<a href="{{ '/edit/category/' . $category->id }}">
 						<button type="submit" class="form-control" style="color:darkgoldenrod;">Izmeni kategoriju

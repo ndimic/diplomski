@@ -23,6 +23,7 @@ Route::get( '/logout', 'Auth\LoginController@logout' );
 
 Route::get( '/', 'HomeController@index' )->name( 'home' );
 Route::get( '/cars', 'CarsController@index' )->name( 'cars' );
+Route::post( '/cars-results', 'CarsController@getCars' );
 Route::get( '/car/{id}', 'CarsController@carDetails' );
 Route::get( '/myAds', 'CarsController@userAds' );
 Route::get( '/categories', 'CategoriesController@index' )->name( 'categories' );
@@ -40,3 +41,6 @@ Route::post( '/deleteCar', 'CarsController@deleteCar' )->name( 'delete' );
 Route::get( '/searchCar', 'CarsController@searchCar' );
 Route::post( '/search', 'CarsController@search' );
 Route::get( '/external', 'CarsController@dataAction' );
+Route::get( '/profile', 'HomeController@userProfile' );
+Route::post( '/userSaveData', 'HomeController@userSaveData' );
+Route::post( '/sendEmail', 'HomeController@sendEmail' )->name( 'send-email' );

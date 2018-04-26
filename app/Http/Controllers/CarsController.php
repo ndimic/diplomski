@@ -30,7 +30,58 @@ class CarsController extends Controller
 			
 		}
 		
-		return view( 'layouts.pages.cars', compact( 'cars' ) );
+		$categories = Category::all();
+		
+		return view( 'layouts.pages.cars', compact( 'cars', 'categories' ) );
+	}
+	
+	public function getCars( Request $request )
+	{
+		
+		$categories = Category::all();
+		
+		$category_id = $request->get( 'category' );
+		$price       = $request->get( 'price' );
+		$year_from   = $request->get( 'car_year_from' );
+		$year_to     = $request->get( 'car_year_to' );
+		
+		if ( $category_id || $price || $year_from || $year_to ) {
+			
+			$query = Car::where( 'status', 1 );
+			
+			if ( $category_id ) {
+				
+				$query->where( 'category_id', $category_id );
+				
+			}
+			
+			if ( $price ) {
+				
+				$query->where( 'price', '<=', $price );
+				
+			}
+			
+			if ( $year_from ) {
+				
+				$query->where( 'year', '>=', $year_from );
+				
+			}
+			
+			if ( $year_to ) {
+				
+				$query->where( 'year', '<=', $year_to );
+				
+			}
+			
+		} else {
+			
+			return redirect()->route( 'cars' );
+		}
+		
+		$cars = $query->paginate( 4 );
+		
+		return view( 'layouts.pages.search_result', compact( 'cars', 'categories' ) );
+		
 	}
 	
 	public function carDetails( $id )

@@ -26,9 +26,9 @@
 				<li>
 					<a href="{{ '/cars' }}">Oglasi</a>
 				</li>
-				<li>
+				{{--<li>
 					<a href="{{ '/searchCar' }}">Pretraga</a>
-				</li>
+				</li>--}}
 
 				@if ( Auth::user() )
 
@@ -48,6 +48,9 @@
 						</li>
 						<li>
 							<a href="{{ '/myAds' }}">Moji oglasi</a>
+						</li>
+						<li>
+							<a href="{{ '/profile' }}">Moj profil</a>
 						</li>
 
 					@endif
