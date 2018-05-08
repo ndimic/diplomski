@@ -44,6 +44,7 @@ class HomeController extends Controller
 			'user_name.required'        => 'Morate uneti Vase ime!',
 			'user_email.required'       => 'Morate uneti Vas email!',
 			'user_email.email'          => 'Email nije u dobrom formatu!',
+			'user_phone.required'       => 'Morate uneti Vas broj telefona!',
 			'user_phone.digits_between' => 'Broj telefona nije u dobrom formatu!'
 		];
 		
@@ -52,7 +53,7 @@ class HomeController extends Controller
 		$this->validate( $request, [
 			'user_name'  => 'required',
 			'user_email' => 'required|email',
-			'user_phone' => 'digits_between:7,20',
+			'user_phone' => 'required|digits_between:7,20',
 		], $messages );
 		
 		

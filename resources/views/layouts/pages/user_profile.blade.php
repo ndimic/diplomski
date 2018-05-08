@@ -66,7 +66,7 @@
 					
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group required">
 						
 						<label>Broj telefona: </label>
 						<input type="text" class="form-control" name="user_phone"
