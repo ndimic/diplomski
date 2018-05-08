@@ -84,25 +84,29 @@
 				</div>
 			</div>
 			
-			<div class="col-md-3">
+			@if ( auth()->user() )
 				
-				<h4 align="center">Prijavite se na oglas i posaljite poruku vlasniku oglasa</h4>
+				<div class="col-md-3">
+					
+					<h4 align="center">Prijavite se na oglas i posaljite poruku vlasniku oglasa</h4>
+					
+					<form method="post" action="{{ route( 'send-email' ) }}">
+						
+						{!! csrf_field() !!}
+						
+						<textarea required rows="5" class="form-control" name="email_content"></textarea>
+						
+						<br>
+						
+						<input type="hidden" name="car_details" value="{{ $car }}">
+						<input type="hidden" name="user_sender" value="{{ auth()->user() }}">
+						
+						<button type="submit" class="form-control">Posaljite poruku</button>
+					</form>
 				
-				<form method="post" action="{{ route( 'send-email' ) }}">
-					
-					{!! csrf_field() !!}
-					
-					<textarea required rows="5" class="form-control" name="email_content"></textarea>
-					
-					<br>
-					
-					<input type="hidden" name="car_details" value="{{ $car }}">
-					<input type="hidden" name="user_sender" value="{{ auth()->user() }}">
-					
-					<button type="submit" class="form-control">Posaljite poruku</button>
-				</form>
+				</div>
 			
-			</div>
+			@endif
 		
 		</div>
 		<!-- /.row -->
