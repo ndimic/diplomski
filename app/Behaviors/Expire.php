@@ -20,14 +20,29 @@ trait Expire
 			
 			foreach ( $cars as $car ) {
 				
-				if ( $car->created_at->diffInMinutes() > config( 'car.expires.minutes' ) ) {
+				if ( $car->created_at->eq( $car->updated_at ) ) {
 					
-					$car->update( [
+					if ( $car->created_at->diffInMinutes() > config( 'car.expires.minutes' ) ) {
 						
-						'status'     => 0,
-						'is_expired' => 1
-					] );
+						$car->update( [
+							
+							'status'     => 0,
+							'is_expired' => 1
+						] );
+					}
+					
+				} else {
+					
+					if ( $car->updated_at->diffInMinutes() > config( 'car.expires.minutes' ) ) {
+						
+						$car->update( [
+							
+							'status'     => 0,
+							'is_expired' => 1
+						] );
+					}
 				}
+				
 			}
 		}
 	}
