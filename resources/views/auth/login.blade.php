@@ -50,19 +50,21 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     Uloguj se
                                 </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+    
+                                <a style="color: #636b6f;" class="btn btn-link" href="{{ route('password.request') }}">
                                     Zaboravili ste lozinku?
                                 </a>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

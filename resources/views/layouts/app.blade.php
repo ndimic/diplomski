@@ -15,8 +15,8 @@
 </head>
 <body>
 <div id="app">
-
-	<nav class="navbar navbar-default navbar-static-top">
+	
+	<nav class="navbar navbar-inverse navbar-static-top">
 
 		<div class="container">
 
