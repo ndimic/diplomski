@@ -235,7 +235,9 @@ class CarsController extends Controller
 		
 		if ( $id ) {
 			
-			Car::whereId( $id )->update( [ 'status' => 1 ] );
+			Car::whereId( $id )->update( [ 'status'     => 1,
+			                               'is_expired' => 0
+			] );
 			
 			$request->session()->flash( 'alert-success', 'Oglas je odobren!' );
 			
