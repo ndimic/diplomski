@@ -5,32 +5,20 @@ use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Behaviors\Upload;
+use App\Behaviors\Expire;
 
 class CarsController extends Controller
 {
-	use Upload;
+	use Upload, Expire;
 	
 	public function index()
 	{
-		$allCars = Car::whereStatus( 1 )->get();
-		
-		if ( count( $allCars ) > 10 ) {
-			
-			// Number of cars per page
-			$paginate = 4;
-			
-			$cars = Car::whereStatus( 1 )->with( 'category' )->paginate( $paginate );
-			
-		} else {
-			
-			// Number of cars per page
-			$paginate = 3;
-			
-			$cars = Car::whereStatus( 1 )->with( 'category' )->paginate( $paginate );
-			
-		}
+		$cars = Car::whereStatus( 1 )->with( 'category' )->paginate( 4 );
 		
 		$categories = Category::all();
+		
+		// We are checking if ads are expired
+		$this->expiredAds();
 		
 		return view( 'layouts.pages.cars', compact( 'cars', 'categories' ) );
 	}
