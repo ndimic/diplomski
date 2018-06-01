@@ -26,9 +26,6 @@
 				<li>
 					<a href="{{ '/cars' }}">Oglasi</a>
 				</li>
-				{{--<li>
-					<a href="{{ '/searchCar' }}">Pretraga</a>
-				</li>--}}
 				
 				@if ( Auth::user() )
 					
