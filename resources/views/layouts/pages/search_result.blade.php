@@ -135,17 +135,6 @@
 		@endif
 	</div>
 	
-	<!-- Pagination -->
-	<div class="row text-center">
-		
-		<div class="col-lg-12">
-			
-			{{ $cars->links() }}
-		
-		</div>
-	
-	</div>
-	
 	<!-- Footer -->
 	@include( 'layouts.partials.footer' )
 

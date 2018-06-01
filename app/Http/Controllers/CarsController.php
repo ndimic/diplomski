@@ -68,7 +68,7 @@ class CarsController extends Controller
 			return redirect()->route( 'cars' );
 		}
 		
-		$cars = $query->paginate( 4 );
+		$cars = $query->get();
 		
 		return view( 'layouts.pages.search_result', compact( 'cars', 'categories' ) );
 		
