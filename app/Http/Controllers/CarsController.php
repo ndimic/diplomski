@@ -2,10 +2,12 @@
 
 use App\Car;
 use App\Category;
+use App\Mail\NotifyAdminAboutNewAd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Behaviors\Upload;
 use App\Behaviors\Expire;
+use Illuminate\Support\Facades\Mail;
 
 class CarsController extends Controller
 {
@@ -126,7 +128,7 @@ class CarsController extends Controller
 		
 		// Inserting car in database
 		
-		Car::create( [
+		$car = Car::create( [
 			'category_id' => $request->get( 'car_category_id' ),
 			'name'        => $request->get( 'car_name' ),
 			'price'       => $request->get( 'car_price' ),
@@ -136,6 +138,8 @@ class CarsController extends Controller
 			'description' => $request->get( 'car_description' ) ? $request->get( 'car_description' ) : '',
 			'user_id'     => Auth::id()
 		] );
+		
+		Mail::to( 'nenad.dimic34@gmail.com' )->send( new NotifyAdminAboutNewAd( auth()->user(), $car ) );
 		
 		$request->session()->flash( 'alert-success', 'Oglas je uspešno dodat! Naši administatori će razmotriti Vaš oglas.' );
 		
