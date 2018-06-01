@@ -19,7 +19,14 @@ class Car extends Model
 		'image',
 		'description',
 		'user_id',
-		'is_expired'
+		'is_expired',
+		'counter'
+	];
+	
+	protected $with = [
+		
+		'user',
+		'category'
 	];
 	
 	protected $table = 'cars';

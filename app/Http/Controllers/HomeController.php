@@ -27,7 +27,65 @@ class HomeController extends Controller
 	{
 		$car = Car::whereDefault( 1 )->first();
 		
-		return view( 'layouts.pages.home', compact( 'car' ) );
+		$randomCars = Car::inRandomOrder()->whereDefault( 1 )->get();
+		
+		return view( 'layouts.pages.home', compact( 'car', 'randomCars' ) );
+	}
+	
+	public function users()
+	{
+		$users = User::where( 'id', '!=', auth()->user()->id )->get();
+		
+		return view( 'layouts.pages.admin_users', compact( 'users' ) );
+	}
+	
+	public function adminEditUser( $id )
+	{
+		$user = User::find( $id );
+		
+		return view( 'layouts.pages.admin_edit_user', compact( 'user' ) );
+	}
+	
+	public function editUser( Request $request )
+	{
+		$id = $request->input( 'user_id' );
+		
+		$user = User::find( $id );
+		
+		$user->update( $request->all() );
+		
+		$request->session()->flash( 'alert-success', 'Uspesno ste izmenili korisnika!' );
+		
+		return redirect()->route( 'admin_users' );
+	}
+	
+	public function deleteUser( $id, \Illuminate\Http\Request $request )
+	{
+		$user = User::find( $id );
+		
+		$name = $user->name;
+		
+		$user->delete();
+		
+		$request->session()->flash( 'alert-success', "Uspesno ste izbrisali korisnika {$name}!" );
+		
+		return redirect()->back();
+	}
+	
+	public function adminNewUser()
+	{
+		return view( 'layouts.pages.admin_new_user', compact( 'user' ) );
+	}
+	
+	public function newUser( Request $request )
+	{
+		$request->merge( [ 'password' => bcrypt( $request->input( 'password' ) ) ] );
+		
+		User::create( $request->all() );
+		
+		$request->session()->flash( 'alert-success', 'Uspesno ste kreirali novog korisnika!' );
+		
+		return redirect()->route( 'admin_users' );
 	}
 	
 	public function userProfile()

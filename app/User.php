@@ -18,6 +18,7 @@ class User extends Authenticatable
 		'name',
 		'email',
 		'password',
+		'phone'
 	];
 	
 	/**
@@ -45,5 +46,10 @@ class User extends Authenticatable
 		$roles = array_column( $this->roles->toArray(), 'name' );
 		
 		return array_search( $role, $roles ) > -1;
+	}
+	
+	public function cars()
+	{
+		return $this->hasMany( Car::class );
 	}
 }

@@ -40,6 +40,9 @@
 						<li>
 							<a href="{{ '/adminListCars' }}">Admin - Oglasi</a>
 						</li>
+						<li>
+							<a href="{{ '/adminUsers' }}">Admin - Korisnici</a>
+						</li>
 
 					@else
 

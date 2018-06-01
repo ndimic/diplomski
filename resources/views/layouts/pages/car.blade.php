@@ -106,6 +106,14 @@
 				
 				</div>
 			
+			@else
+				
+				<div class="col-md-3" style="margin-top: 110px;">
+					
+					<h4 align="center"><a href="{{ '/login' }}">Ulogujte se</a> kako biste se prijavili na oglas</h4>
+				
+				</div>
+			
 			@endif
 		
 		</div>

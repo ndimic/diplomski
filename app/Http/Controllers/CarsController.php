@@ -74,7 +74,12 @@ class CarsController extends Controller
 	
 	public function carDetails( $id )
 	{
-		$car = Car::whereId( $id )->with( 'category' )->first();
+		$car = Car::find( $id );
+		
+		$car->update( [
+			
+			'counter' => $car->counter + 1
+		] );
 		
 		return view( 'layouts.pages.car', compact( 'car' ) );
 	}
@@ -235,8 +240,9 @@ class CarsController extends Controller
 		
 		if ( $id ) {
 			
-			Car::whereId( $id )->update( [ 'status'     => 1,
-			                               'is_expired' => 0
+			Car::whereId( $id )->update( [
+				'status'     => 1,
+				'is_expired' => 0
 			] );
 			
 			$request->session()->flash( 'alert-success', 'Oglas je odobren!' );
