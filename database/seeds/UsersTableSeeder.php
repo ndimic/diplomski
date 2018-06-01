@@ -14,17 +14,49 @@ class UsersTableSeeder extends Seeder
 	public function run()
 	{
 		DB::table( 'users' )->insert( [
-			'name'       => 'admin',
-			'email'      => 'admin@admin.com',
-			'password'   => bcrypt( 'admin' ),
+			'name'       => 'Nenad Dimic',
+			'email'      => 'nenad.dimic34@gmail.com',
+			'password'   => bcrypt( 'dimic123' ),
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now()
 		] );
 		
 		DB::table( 'users' )->insert( [
-			'name'       => 'member',
-			'email'      => 'member@member.com',
-			'password'   => bcrypt( 'member' ),
+			'name'       => 'Marko Markovic',
+			'email'      => 'marko.markovic@test.com',
+			'password'   => bcrypt( 'test123' ),
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now()
+		] );
+		
+		DB::table( 'users' )->insert( [
+			'name'       => 'Petar Petrovic',
+			'email'      => 'petar.petrovic@test.com',
+			'password'   => bcrypt( 'test123' ),
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now()
+		] );
+		
+		DB::table( 'users' )->insert( [
+			'name'       => 'Milos Djurdjevic',
+			'email'      => 'milos.djurdjevic@test.com',
+			'password'   => bcrypt( 'test123' ),
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now()
+		] );
+		
+		DB::table( 'users' )->insert( [
+			'name'       => 'Nikola Nikolic',
+			'email'      => 'nikola.nikolic@test.com',
+			'password'   => bcrypt( 'test123' ),
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now()
+		] );
+		
+		DB::table( 'users' )->insert( [
+			'name'       => 'Jovan Jovanovic',
+			'email'      => 'jovan.jovanovic@test.com',
+			'password'   => bcrypt( 'test123' ),
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now()
 		] );
