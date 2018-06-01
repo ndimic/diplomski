@@ -15,7 +15,7 @@ class CarsController extends Controller
 	
 	public function index()
 	{
-		$cars = Car::whereStatus( 1 )->with( 'category' )->paginate( 4 );
+		$cars = Car::whereStatus( 1 )->with( 'category' )->paginate( 3 );
 		
 		$categories = Category::all();
 		
