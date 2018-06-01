@@ -25,11 +25,9 @@ class HomeController extends Controller
 	 */
 	public function index()
 	{
-		$car = Car::whereDefault( 1 )->first();
+		$randomCars = Car::whereStatus( 1 )->orderBy( 'counter', 'desc' )->get();
 		
-		$randomCars = Car::inRandomOrder()->whereDefault( 1 )->get();
-		
-		return view( 'layouts.pages.home', compact( 'car', 'randomCars' ) );
+		return view( 'layouts.pages.home', compact( 'randomCars' ) );
 	}
 	
 	public function users()

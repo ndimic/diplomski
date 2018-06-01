@@ -75,7 +75,7 @@
 	
 	<div class="row" style="margin-top: 100px;">
 		
-		<h3 align="center">Preporučeni oglasi</h3>
+		<h3 align="center">Najposećeniji oglasi</h3>
 		
 		<div style="margin-top: 80px;" class="col-md-4" align="center">
 			<a href="{{ 'car/' . $randomCars[0]->id }}" style="color: black;">
