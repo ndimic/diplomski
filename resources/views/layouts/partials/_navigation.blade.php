@@ -43,9 +43,12 @@
 						<li>
 							<a href="{{ '/adminUsers' }}">Admin - Korisnici</a>
 						</li>
+						<li>
+							<a href="{{ '/addCar' }}">Admin - Postavi oglas</a>
+						</li>
 
 					@else
-
+						
 						<li>
 							<a href="{{ '/addCar' }}">Postavi oglas</a>
 						</li>
