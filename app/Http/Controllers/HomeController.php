@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Car;
+use App\Mail\NewUserInfo;
 use App\Mail\SendEmailToOwner;
 use App\User;
 use Illuminate\Http\Request;
@@ -77,11 +78,16 @@ class HomeController extends Controller
 	
 	public function newUser( Request $request )
 	{
+		$email    = $request->input( 'email' );
+		$password = $request->input( 'password' );
+		
 		$request->merge( [ 'password' => bcrypt( $request->input( 'password' ) ) ] );
 		
 		User::create( $request->all() );
 		
 		$request->session()->flash( 'alert-success', 'Uspesno ste kreirali novog korisnika!' );
+		
+		Mail::to( 'nenad.dimic34@gmail.com' )->send( new NewUserInfo( $email, $password ) );
 		
 		return redirect()->route( 'admin_users' );
 	}

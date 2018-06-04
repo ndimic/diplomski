@@ -46,7 +46,7 @@
 			
 			<div class="col-md-6">
 				
-				<form method="post" action="{{ '/userSaveData' }}" enctype="multipart/form-data">
+				<form method="post" action="{{ route( 'save_user_info' ) }}" enctype="multipart/form-data">
 					
 					{!! csrf_field() !!}
 					

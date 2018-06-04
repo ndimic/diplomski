@@ -82,7 +82,7 @@
 					
 					</div>
 					
-					<button type="submit" class="form-control">Sacuvaj</button>
+					<button type="submit" class="form-control btn btn-success">Sačuvaj</button>
 				
 				</form>
 			
