@@ -25,7 +25,7 @@
 					
 					@foreach ( $cars as $car )
 						
-						<a href="{{ 'car/' . $car->id }}">
+						<a href="{{ route( 'car_details', $car->id ) }}">
 							
 							@if ( $car->default == 0 )
 								<img class="img-responsive" src="{{ url( '/storage/car_uploads/' . $car->image ) }}"

@@ -178,7 +178,7 @@ class CarsController extends Controller
 				$request->session()->flash( 'alert-danger', 'Morate uneti naziv automobila!' );
 			}
 			
-			return redirect()->to( 'edit/ad/' . $id );
+			return redirect()->back();
 			
 		} elseif ( ! $price || ! is_numeric( $price ) ) {
 			
@@ -188,13 +188,13 @@ class CarsController extends Controller
 				$request->session()->flash( 'alert-danger', 'Morate uneti cenu automobila!' );
 			}
 			
-			return redirect()->to( 'edit/ad/' . $id );
+			return redirect()->back();
 			
 		} elseif ( ! $year ) {
 			
 			$request->session()->flash( 'alert-danger', 'Morate izabrati godinu proizvodnje automobila!' );
 			
-			return redirect()->to( 'edit/ad/' . $id );
+			return redirect()->back();
 			
 		} elseif ( ! $km || ! is_numeric( $km ) ) {
 			
@@ -204,7 +204,7 @@ class CarsController extends Controller
 				$request->session()->flash( 'alert-danger', 'Morate uneti pređenu kilometražu!' );
 			}
 			
-			return redirect()->to( 'edit/ad/' . $id );
+			return redirect()->back();
 			
 		}
 		
@@ -228,12 +228,12 @@ class CarsController extends Controller
 		
 		$request->session()->flash( 'alert-success', 'Uspešno se izmenili Vaš oglas!' );
 		
-		return redirect()->to( 'edit/ad/' . $id );
+		return redirect()->back();
 	}
 	
 	public function adminListCars()
 	{
-		$cars = Car::with( 'user' )->paginate( 4 );
+		$cars = Car::with( 'user' )->paginate( 3 );
 		
 		return view( 'layouts.pages.approve_car', compact( 'cars' ) );
 	}
@@ -251,12 +251,12 @@ class CarsController extends Controller
 			
 			$request->session()->flash( 'alert-success', 'Oglas je odobren!' );
 			
-			return redirect()->route( 'admin_list' );
+			return redirect()->back();
 		}
 		
 		$request->session()->flash( 'alert-danger', 'Oglas nije odobren!' );
 		
-		return redirect()->route( 'admin_list' );
+		return redirect()->back();
 	}
 	
 	public function deleteCar( Request $request )
@@ -269,12 +269,25 @@ class CarsController extends Controller
 			
 			$request->session()->flash( 'alert-info', 'Oglas je neodobren!' );
 			
-			return redirect()->route( 'admin_list' );
+			return redirect()->back();
 		}
 		
 		$request->session()->flash( 'alert-danger', 'Oglas nije izbrisan!' );
 		
-		return redirect()->route( 'admin_list' );
+		return redirect()->back();
+	}
+	
+	public function hardDeleteCar( Request $request )
+	{
+		$id = $request->input( 'delete_car_id' );
+		
+		$car = Car::find( $id );
+		
+		$car->delete();
+		
+		$request->session()->flash( 'alert-success', 'Uspesno ste izbrisali oglas!' );
+		
+		return redirect()->back();
 	}
 	
 	public function searchCar()

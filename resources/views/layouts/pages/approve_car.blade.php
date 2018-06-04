@@ -30,7 +30,7 @@
 					<div class="row">
 						
 						<div class="col-md-6">
-							<a href="{{ 'car/' . $car->id }}">
+							<a href="{{ route( 'car_details', $car->id ) }}">
 								
 								@if ( $car->default == 0 )
 									<img class="img-responsive" src="{{ url( '/storage/car_uploads/' .$car->image ) }}"
@@ -80,26 +80,45 @@
 							
 							@if ( $car->status == 0 )
 								
-								<form method="post" action="{{ '/approveCar' }}">
+								<form method="post" action="{{ route( 'approve_car' ) }}">
 									{!! csrf_field() !!}
 									<input type="hidden" name="approve_car_id" value="{{ $car->id }}"/>
-									<button type="submit" class="form-control" style="color:#fff; background: #3c763d">
-										Odobri oglas
+									<button type="submit" class="form-control btn btn-success" style="color:#fff;">
+										Odobriti oglas ( prikazati ga u listi oglasa )
 									</button>
 								</form>
 							
 							@else
 								
 								<br>
-								<form method="post" action="{{ '/deleteCar' }}">
+								<form method="post" action="{{ route( 'disapprove_car' ) }}">
 									{!! csrf_field() !!}
 									<input type="hidden" name="delete_car_id" value="{{ $car->id }}"/>
-									<button type="submit" class="form-control" style="color:#fff; background: #a94442">
-										Ukloni oglas
+									<button type="submit" class="form-control btn btn-warning" style="color:#fff">
+										Neodobriti oglas ( ukloniti ga iz liste oglasa )
 									</button>
 								</form>
 							
 							@endif
+							
+							<br>
+							
+							<form method="get" action="{{ route( 'edit_car', $car->id ) }}">
+								{!! csrf_field() !!}
+								<button type="submit" class="form-control btn btn-info" style="color:#fff;">
+									Izmeniti oglas
+								</button>
+							</form>
+							
+							<br>
+							
+							<form method="post" action="{{ route( 'delete_car' ) }}">
+								{!! csrf_field() !!}
+								<input type="hidden" name="delete_car_id" value="{{ $car->id }}"/>
+								<button type="submit" class="form-control btn btn-danger" style="color:#fff;">
+									Izbrisati oglas
+								</button>
+							</form>
 						</div>
 					
 					</div>

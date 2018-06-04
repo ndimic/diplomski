@@ -28,7 +28,7 @@
 					
 					<div class="col-md-6">
 						
-						<a href="{{ 'edit/ad/' .$car->id }}">
+						<a href="{{ route( 'edit_car', $car->id ) }}">
 							
 							@if ( $car->default == 0 )
 								<img style="height: 275px !important;" class="img-responsive"

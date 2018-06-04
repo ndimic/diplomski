@@ -57,7 +57,7 @@ class HomeController extends Controller
 		return redirect()->route( 'admin_users' );
 	}
 	
-	public function deleteUser( $id, \Illuminate\Http\Request $request )
+	public function deleteUser( $id, Request $request )
 	{
 		$user = User::find( $id );
 		
@@ -93,7 +93,7 @@ class HomeController extends Controller
 		return view( 'layouts.pages.user_profile', compact( 'user' ) );
 	}
 	
-	public function userSaveData( \Illuminate\Http\Request $request )
+	public function userSaveData( Request $request )
 	{
 		
 		$messages = [

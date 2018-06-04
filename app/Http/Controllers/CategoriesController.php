@@ -76,26 +76,39 @@ class CategoriesController extends Controller
 	
 	public function editCategory( Request $request )
 	{
-		$id = $request->input( 'category_id' );
+		$id   = $request->input( 'category_id' );
+		$name = $request->input( 'category_name' );
 		
 		if ( $request->hasFile( 'category_logo' ) ) {
 			
 			$logo            = $request->file( 'category_logo' );
 			$imageName       = time() . '.' . $logo->getClientOriginalName();
-			$destinationPath = public_path( '/images', $logo->getClientOriginalName() );
+			$destinationPath = public_path( '/storage/car_uploads', $logo->getClientOriginalName() );
 			
 			$logo->move( $destinationPath, $imageName );
 			
-			Category::whereId( $id )->update( [ 'logo' => $imageName ] );
+			Category::whereId( $id )->update( [
+				
+				'logo' => $imageName,
+			] );
+			
+		}
+		
+		if ( $name ) {
+			
+			Category::whereId( $id )->update( [
+				
+				'name' => $name,
+			] );
 			
 			$request->session()->flash( 'alert-success', 'Kategorija je uspešno izmenjena!' );
 			
-			return redirect()->to( 'edit/category/' . $id );
+			return redirect()->back();
 		}
 		
-		$request->session()->flash( 'alert-danger', 'Unesite logo kategorije!' );
+		$request->session()->flash( 'alert-danger', 'Kategorija nije uspesno izmenjena!' );
 		
-		return redirect()->to( 'edit/category/' . $id );
+		return redirect()->back();
 	}
 	
 }

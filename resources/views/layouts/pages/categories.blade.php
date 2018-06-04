@@ -57,7 +57,7 @@
 						<small>{{ $category->name }}</small>
 					</h1>
 					
-					@if ( $category->default == 0 )
+					@if ( $category->default === 0 )
 						<img class="img-responsive" style="width: 70px;"
 						     src="{{ url( '/storage/car_uploads/' . $category->logo ) }}"
 						     alt="">
@@ -69,14 +69,7 @@
 					
 					<br>
 					
-					{{--<form method="post" action="{{ '/deleteCategory' }}">
-						{!! csrf_field() !!}
-						<input type="hidden" name="category_id" value="{{ $category->id }}"/>
-						<button type="submit" class="form-control" style="color:red;">Obriši kategoriju</button>
-					</form>
-					<br>--}}
-					
-					<a href="{{ '/edit/category/' . $category->id }}">
+					<a href="{{ route( 'edit_category', $category->id ) }}">
 						<button type="submit" class="form-control" style="color:darkgoldenrod;">Izmeni kategoriju
 						</button>
 					</a>
@@ -97,7 +90,7 @@
 			
 			<div class="col-md-6">
 				
-				<form method="post" action="{{ '/addCategory' }}" enctype="multipart/form-data">
+				<form method="post" action="{{ route( 'add_category' ) }}" enctype="multipart/form-data">
 					
 					{!! csrf_field() !!}
 					
