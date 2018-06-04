@@ -70,7 +70,7 @@
 					
 					<h3 align="center" class="border">Filter</h3>
 					
-					<form method="post" action="{{ '/cars-results' }}">
+					<form method="post" action="{{ route( 'car_results' ) }}">
 						
 						{!! csrf_field() !!}
 						

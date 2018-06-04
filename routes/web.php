@@ -23,7 +23,7 @@ Route::get( '/logout', 'Auth\LoginController@logout' )->name( 'logout' );
 
 Route::get( '/', 'HomeController@index' )->name( 'home' );
 Route::get( '/cars', 'CarsController@index' )->name( 'cars' );
-Route::post( '/cars-results', 'CarsController@getCars' );
+Route::post( '/cars/results', 'CarsController@getCars' )->name( 'car_results' );
 Route::get( '/car/{id}', 'CarsController@carDetails' )->name( 'car_details' );
 Route::get( '/user/ads', 'CarsController@userAds' )->name( 'my_ads' );
 Route::get( '/categories', 'CategoriesController@index' )->name( 'categories' );
