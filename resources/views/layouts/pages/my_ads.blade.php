@@ -93,7 +93,8 @@
 			
 			<div align="center" class="col-md-12">
 				
-				<h3>Nemate svojih oglasa. <a href="{{ url( '/addCar' ) }}">Postavite Vaš prvi oglas</a> i zaradite.</h3>
+				<h3>Nemate svojih oglasa. <a href="{{ route( 'add_car' ) }}">Postavite Vaš prvi oglas</a> i zaradite.
+				</h3>
 			
 			</div>
 		

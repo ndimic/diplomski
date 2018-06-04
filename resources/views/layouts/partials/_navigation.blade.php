@@ -32,34 +32,34 @@
 					@if ( Auth::user()->hasRole( 'admin' ) )
 						
 						<li>
-							<a href="{{ '/categories' }}">Admin - Kategorije</a>
+							<a href="{{ route( 'categories' ) }}">Admin - Kategorije</a>
 						</li>
 						<li>
-							<a href="{{ '/adminListCars' }}">Admin - Oglasi</a>
+							<a href="{{ route( 'admin_cars' ) }}">Admin - Oglasi</a>
 						</li>
 						<li>
-							<a href="{{ '/adminUsers' }}">Admin - Korisnici</a>
+							<a href="{{ route( 'admin_users' ) }}">Admin - Korisnici</a>
 						</li>
 						<li>
-							<a href="{{ '/addCar' }}">Admin - Postavi oglas</a>
+							<a href="{{ route( 'add_car' ) }}">Admin - Postavi oglas</a>
 						</li>
 					
 					@else
 						
 						<li>
-							<a href="{{ '/addCar' }}">Postavi oglas</a>
+							<a href="{{ route( 'add_car' ) }}">Postavi oglas</a>
 						</li>
 						<li>
-							<a href="{{ '/myAds' }}">Moji oglasi</a>
+							<a href="{{ route( 'my_ads' ) }}">Moji oglasi</a>
 						</li>
 					
 					@endif
 					
 					<li>
-						<a href="{{ '/profile' }}">Moj profil</a>
+						<a href="{{ route( 'profile' ) }}">Moj profil</a>
 					</li>
 					<li>
-						<a href="{{ url( '/logout' ) }}">Odjavite se</a>
+						<a href="{{ route( 'logout' ) }}">Odjavite se</a>
 					</li>
 				
 				@else

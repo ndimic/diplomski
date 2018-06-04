@@ -90,7 +90,7 @@
 					
 					<h4 align="center">Prijavite se na oglas i posaljite poruku vlasniku oglasa</h4>
 					
-					<form method="post" action="{{ route( 'send-email' ) }}">
+					<form method="post" action="{{ route( 'send_email' ) }}">
 						
 						{!! csrf_field() !!}
 						

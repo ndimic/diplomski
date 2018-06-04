@@ -66,8 +66,8 @@
 				</form>
 				<br>
 				
-				<a href="{{ '/myAds' }}"><input type="button" class="form-control editWidth"
-				                                value="Nazad na moje oglase"></a>
+				<a href="{{ route( 'my_ads' ) }}"><input type="button" class="form-control editWidth"
+				                                         value="Nazad na moje oglase"></a>
 			
 			</div>
 		
