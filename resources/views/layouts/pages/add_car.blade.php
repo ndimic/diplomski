@@ -55,9 +55,19 @@
 						<label>Kategorija: </label>
 						<select class="form-control" name="car_category_id">
 							<option value="">Izaberite kategoriju...</option>
+							
 							@foreach ( $categories as $category )
-								<option
-									value="{{ $category->id }}">{{ $category->name }}</option>
+								
+								@if ( \Illuminate\Support\Facades\Input::old('car_category_id') == $category->id )
+									
+									<option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+								
+								@else
+									
+									<option value="{{ $category->id }}">{{ $category->name }}</option>
+								
+								@endif
+							
 							@endforeach
 						</select><br>
 					
@@ -85,8 +95,17 @@
 						<select class="form-control" name="car_year_id">
 							<option name="car_year" value="">Izaberite godinu proizvodnje...</option>
 							@for ( $i = 1980; $i <= 2017; $i++ )
-								<option name="car_year"
-								        value="{{ $i }}">{{ $i }}</option>
+								
+								@if ( \Illuminate\Support\Facades\Input::old('car_year_id') == $i )
+									
+									<option value="{{ $i }}" selected>{{ $i }}</option>
+								
+								@else
+									
+									<option value="{{ $i }}">{{ $i }}</option>
+								
+								@endif
+							
 							@endfor
 						</select><br>
 					
@@ -115,7 +134,7 @@
 					
 					</div>
 					
-					<button type="submit" class="form-control">Postavi oglas</button>
+					<button type="submit" class="form-control btn btn-success">Postavi oglas</button>
 				
 				</form>
 			

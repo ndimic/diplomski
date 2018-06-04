@@ -41,12 +41,13 @@
 					<input type="text" class="form-control" name="category_name" value="{{ $category->name }}"/><br>
 					<input type="file" class="form-control" name="category_logo"/><br>
 					<input type="hidden" name="category_id" value="{{ $category->id }}"/>
-					<button type="submit" class="form-control" style="color:darkgoldenrod;">Izmeni kategoriju</button>
+					<button type="submit" class="form-control btn btn-success">Izmeni kategoriju</button>
 				
 				</form>
 				<br>
 				
-				<a href="{{ '/categories' }}"><input type="button" class="form-control" value="Nazad na kategorije"></a>
+				<a href="{{ route( 'categories' ) }}"><input type="button" class="form-control btn btn-info"
+				                                             value="Nazad na kategorije"></a>
 			
 			</div>
 		

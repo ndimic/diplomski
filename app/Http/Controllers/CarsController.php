@@ -15,7 +15,7 @@ class CarsController extends Controller
 	
 	public function index()
 	{
-		$cars = Car::whereStatus( 1 )->with( 'category' )->paginate( 3 );
+		$cars = Car::whereStatus( 1 )->with( 'category' )->orderBy( 'id', 'desc' )->paginate( 3 );
 		
 		$categories = Category::all();
 		
@@ -233,7 +233,7 @@ class CarsController extends Controller
 	
 	public function adminListCars()
 	{
-		$cars = Car::with( 'user' )->paginate( 3 );
+		$cars = Car::with( 'user' )->orderBy( 'id', 'desc' )->paginate( 3 );
 		
 		return view( 'layouts.pages.approve_car', compact( 'cars' ) );
 	}

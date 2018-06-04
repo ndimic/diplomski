@@ -108,7 +108,7 @@
 						
 						</select><br>
 						
-						<button type="submit" id="searchCar" class="form-control">Pretraži</button>
+						<button type="submit" id="searchCar" class="form-control btn btn-info">Pretraži</button>
 					
 					</form>
 				

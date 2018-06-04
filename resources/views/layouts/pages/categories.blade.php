@@ -70,7 +70,7 @@
 					<br>
 					
 					<a href="{{ route( 'edit_category', $category->id ) }}">
-						<button type="submit" class="form-control" style="color:darkgoldenrod;">Izmeni kategoriju
+						<button type="submit" class="form-control btn btn-info">Izmeni kategoriju
 						</button>
 					</a>
 				</div>
@@ -109,7 +109,7 @@
 					
 					</div>
 					
-					<button type="submit" class="form-control" style="color: green;">Dodaj kategoriju</button>
+					<button type="submit" class="form-control btn btn-success">Dodaj kategoriju</button>
 				
 				</form>
 			

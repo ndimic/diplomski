@@ -101,7 +101,7 @@
 						<input type="hidden" name="car_details" value="{{ $car }}">
 						<input type="hidden" name="user_sender" value="{{ auth()->user() }}">
 						
-						<button type="submit" class="form-control">Posaljite poruku</button>
+						<button type="submit" class="form-control btn btn-info">Posaljite poruku</button>
 					</form>
 				
 				</div>

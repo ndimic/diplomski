@@ -59,14 +59,14 @@
 					          placeholder="Unisite opis..."
 					          maxlength="300">{{ $car->description }}</textarea><br>
 					
-					<button type="submit" class="form-control editWidth" style="color:darkgoldenrod;">Izmeni oglas
+					<button type="submit" class="form-control editWidth btn btn-success">Izmeni oglas
 					</button>
 					<input type="hidden" name="car_id" value="{{ $car->id }}">
 				
 				</form>
 				<br>
 				
-				<a href="{{ route( 'my_ads' ) }}"><input type="button" class="form-control editWidth"
+				<a href="{{ route( 'my_ads' ) }}"><input type="button" class="form-control editWidth btn btn-info"
 				                                         value="Nazad na moje oglase"></a>
 			
 			</div>
