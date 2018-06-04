@@ -20,7 +20,7 @@ class CarsController extends Controller
 		$categories = Category::all();
 		
 		// We are checking if ads are expired
-		$this->expiredAds();
+		// $this->expiredAds();
 		
 		return view( 'layouts.pages.cars', compact( 'cars', 'categories' ) );
 	}
