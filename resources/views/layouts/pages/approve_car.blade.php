@@ -103,14 +103,13 @@
 							
 							<br>
 							
-							<form method="get" action="{{ route( 'edit_car', $car->id ) }}">
-								{!! csrf_field() !!}
+							<a href="{{ route( 'edit_car', $car->id ) }}">
 								<button type="submit" class="form-control btn btn-info" style="color:#fff;">
 									Izmeniti oglas
 								</button>
-							</form>
+							</a>
 							
-							<br>
+							<br><br>
 							
 							<form method="post" action="{{ route( 'delete_car' ) }}">
 								{!! csrf_field() !!}
