@@ -70,7 +70,8 @@ class CarsTableSeeder extends Seeder
 			'description' => 'Audi Q7 je pokušaj ove njemačke marke automobila da se nametne na zahtjevnom tržištu luksuznih SUV-a. Nastao je iz konceptnog vozila Audi Pikes Peak, a prvi put je javnosti predstavljen na Frankfurtskom auto showu 2005. Izrađen na podlozi Porsche Cayennea i VW Touarega ovaj model ima velike šanse za uspjeh. Od konkurenata se razlikuje po tome što u serijskoj opremi nudi 7 sjedala, a u potpunosti je prilagođen vožnji na cesti.',
 			'created_at'  => Carbon::now(),
 			'updated_at'  => Carbon::now(),
-			'user_id'     => 4
+			'user_id'     => 4,
+			'counter'     => 1
 		] );
 		
 		DB::table( 'cars' )->insert( [
@@ -115,7 +116,8 @@ class CarsTableSeeder extends Seeder
 			'description' => 'C-klasa je linija limuzina i karavana srednje klase, te hatchbacka kompaktne klase (samo u drugoj generaciji), koju proizvodi i prodaje Mercedes-Benz, a dosad je proizvedena u tri generacije. Zamjena je za model srednje klase 190. U vrijeme prve pojave na tržištu bio je najmanji i najpristupačnij model, sve do dolaska A-klase 1997.',
 			'created_at'  => Carbon::now(),
 			'updated_at'  => Carbon::now(),
-			'user_id'     => 3
+			'user_id'     => 3,
+			'counter'     => 2
 		] );
 		
 		DB::table( 'cars' )->insert( [
@@ -130,7 +132,8 @@ class CarsTableSeeder extends Seeder
 			'description' => 'Mercedes AMG je deo agende „AMG Performance 50“ koja se prostire na period do 2017. godine, kada se slavi 50. godišnjica Mercedesovog sportskog odeljenja. ',
 			'created_at'  => Carbon::now(),
 			'updated_at'  => Carbon::now(),
-			'user_id'     => 5
+			'user_id'     => 5,
+			'counter'     => 3,
 		] );
 		
 		DB::table( 'cars' )->insert( [
