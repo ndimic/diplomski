@@ -37,7 +37,7 @@ class CarsController extends Controller
 		
 		if ( $category_id || $price || $year_from || $year_to ) {
 			
-			$query = Car::where( 'status', 1 );
+			$query = Car::whereStatus( 1 );
 			
 			if ( $category_id ) {
 				
@@ -46,7 +46,7 @@ class CarsController extends Controller
 			
 			if ( $price ) {
 				
-				$query->where( 'price', '<=', $price );
+				$query->where( 'price', '<=', (int) $price );
 			}
 			
 			if ( $year_from ) {
@@ -66,7 +66,16 @@ class CarsController extends Controller
 		
 		$cars = $query->get();
 		
-		return view( 'layouts.pages.search_result', compact( 'cars', 'categories' ) );
+		if ( count( $cars ) ) {
+			
+			return view( 'layouts.pages.search_result', compact( 'cars', 'categories' ) );
+			
+		} else {
+			
+			$request->session()->flash( 'alert-info', 'Nema rezultata za odabrani filter!' );
+			
+			return redirect()->route( 'cars' );
+		}
 		
 	}
 	
