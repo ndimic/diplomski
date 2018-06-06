@@ -64,7 +64,8 @@ class HomeController extends Controller
 		
 		$name = $user->name;
 		
-		$user->delete();
+		// Removing all user's ads
+		$user->cars()->delete();
 		
 		$request->session()->flash( 'alert-success', "Uspesno ste izbrisali korisnika {$name}!" );
 		

@@ -42,25 +42,21 @@ class CarsController extends Controller
 			if ( $category_id ) {
 				
 				$query->where( 'category_id', $category_id );
-				
 			}
 			
 			if ( $price ) {
 				
 				$query->where( 'price', '<=', $price );
-				
 			}
 			
 			if ( $year_from ) {
 				
 				$query->where( 'year', '>=', $year_from );
-				
 			}
 			
 			if ( $year_to ) {
 				
 				$query->where( 'year', '<=', $year_to );
-				
 			}
 			
 		} else {

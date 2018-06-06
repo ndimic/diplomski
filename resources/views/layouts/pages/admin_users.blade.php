@@ -52,10 +52,12 @@
 							<td>{{ $user->name }}</td>
 							<td>{{ $user->email }}</td>
 							<td>{{ $user->phone }}</td>
-							<td><a href="{{ '/adminEditUser/' . $user->id }}"><input type="button" class="btn btn-info"
-							                                                         value="Izmeni"></a></td>
-							<td><a href="{{ '/deleteUser/' . $user->id }}"><input type="button" class="btn btn-danger"
-							                                                      value="Izbrisi"></a></td>
+							<td><a href="{{ route( 'admin_edit_user', $user->id ) }}"><input type="button"
+							                                                                 class="btn btn-info"
+							                                                                 value="Izmeni"></a></td>
+							<td><a href="{{ route( 'delete_user', $user->id) }}"><input type="button"
+							                                                            class="btn btn-danger"
+							                                                            value="Izbrisi"></a></td>
 						</tr>
 						</tbody>
 					
