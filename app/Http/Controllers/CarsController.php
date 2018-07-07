@@ -215,10 +215,9 @@ class CarsController extends Controller
 		
 		if ( $request->hasFile( 'car_image' ) ) {
 			
-			$new             = $request->file( 'car_image' );
-			$imageName       = time() . '.' . $new->getClientOriginalName();
-			$destinationPath = public_path( '/images', $new->getClientOriginalName() );
-			$new->move( $destinationPath, $imageName );
+			$new       = $request->file( 'car_image' );
+			$imageName = time() . '.' . $new->getClientOriginalName();
+			$this->upload( $new, $imageName );
 			
 			Car::whereId( $id )->update( [ 'image' => $imageName ] );
 		}
