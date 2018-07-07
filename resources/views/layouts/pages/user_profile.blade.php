@@ -36,10 +36,15 @@
 		<div class="row">
 			
 			<div class="col-md-12">
-				
-				<h1 class="page-header">
-					<small>Profil</small>
-				</h1>
+				@if ($user->hasRole('admin'))
+					<h1 class="page-header">
+						<small>Profil (Administrator)</small>
+					</h1>
+				@else
+					<h1 class="page-header">
+						<small>Profil (Korisnik)</small>
+					</h1>
+				@endif
 			
 			</div>
 			<br>

@@ -227,7 +227,8 @@ class CarsController extends Controller
 			'price'       => $price,
 			'year'        => $year,
 			'km'          => $km,
-			'description' => $description
+			'description' => $description,
+			'default'     => 0
 		] );
 		
 		$request->session()->flash( 'alert-success', 'Uspešno se izmenili Vaš oglas!' );
