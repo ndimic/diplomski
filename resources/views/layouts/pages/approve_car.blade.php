@@ -45,6 +45,8 @@
 						
 						<div class="col-md-6">
 							<h3 align="center" class="border"
+							    style="background-color: #343a40; color: #ffffff;"><i>{{ $car->name }}</i></h3>
+							<h3 align="center" class="border"
 							    style="background-color: #fff; color: black;">{{ $car->price }} €</h3>
 							<h3 align="center" class="border" style="background: #fff; color: black;">{{ $car->year }}.
 								godište</h3>
