@@ -31,6 +31,11 @@ class User extends Authenticatable
 		'remember_token',
 	];
 	
+	protected $withCount = [
+		
+		'cars'
+	];
+	
 	/**
 	 * User Roles
 	 *
