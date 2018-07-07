@@ -66,8 +66,14 @@
 				</form>
 				<br>
 				
-				<a href="{{ route( 'my_ads' ) }}"><input type="button" class="form-control editWidth btn btn-info"
-				                                         value="Nazad na moje oglase"></a>
+				@if (auth()->user()->hasRole('admin'))
+					<a href="{{ route( 'admin_cars' ) }}"><input type="button"
+					                                             class="form-control editWidth btn btn-info"
+					                                             value="Nazad na moje oglase"></a>
+				@else
+					<a href="{{ route( 'my_ads' ) }}"><input type="button" class="form-control editWidth btn btn-info"
+					                                         value="Nazad na moje oglase"></a>
+				@endif
 			
 			</div>
 		
