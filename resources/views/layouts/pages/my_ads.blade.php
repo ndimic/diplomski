@@ -74,8 +74,7 @@
 						
 						@else
 							
-							<h3 align="center">Status: </h3><h5 align="center" style="color: red;">Neodobren (čeka se
-								obrada admina)</h5>
+							<h3 align="center">Status: </h3><h5 align="center" style="color: red;">Neodobren</h5>
 						
 						@endif
 					
