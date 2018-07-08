@@ -129,8 +129,8 @@
 					<div class="form-group">
 						
 						<label>Opis:</label>
-						<textarea class="form-control" name="car_description" rows="5" placeholder="Unisite opis..."
-						          maxlength="300" value="{{ old( 'car_image' ) }}"></textarea><br>
+						<textarea class="form-control" name="car_description" rows="5" placeholder="Upisite opis..."
+						          maxlength="300">{{ \Illuminate\Support\Facades\Input::old( 'car_description' ) }}</textarea><br>
 					
 					</div>
 					
