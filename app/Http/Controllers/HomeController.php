@@ -89,7 +89,7 @@ class HomeController extends Controller
 			'name.required'        => 'Morate uneti Vase ime!',
 			'email.required'       => 'Morate uneti Vasu email adresu!',
 			'email.email'          => 'Email adresa nije u dobrom formatu!',
-			'email.unique'         => 'Unete email adresa vec postoji!',
+			'email.unique'         => 'Uneta email adresa vec postoji!',
 			'password.required'    => 'Morate uneti Vasu lozinku!',
 			'password.min'         => 'Lozinka mora imati najmanje 6 karaktera!',
 			'phone.digits_between' => 'Unet broj telefona nije u dobrom formatu!',
