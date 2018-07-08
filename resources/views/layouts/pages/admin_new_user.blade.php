@@ -54,7 +54,7 @@
 						
 						<label>Ime: </label>
 						<input type="text" class="form-control" name="name"
-						       placeholder="Unesite ime" required value=""/><br>
+						       placeholder="Unesite ime" required value="{{ old( 'name' ) }}"/><br>
 					
 					</div>
 					
@@ -62,7 +62,7 @@
 						
 						<label>Email: </label>
 						<input type="text" class="form-control" name="email"
-						       placeholder="Unesite email" required value=""/><br>
+						       placeholder="Unesite email" required value="{{ old( 'email' ) }}"/><br>
 					
 					</div>
 					
@@ -78,7 +78,17 @@
 						
 						<label>Broj telefona: </label>
 						<input type="text" class="form-control" name="phone"
-						       placeholder="Unesite broj telefona" value=""/><br>
+						       placeholder="Unesite broj telefona" value="{{ old( 'phone' ) }}"/><br>
+					
+					</div>
+					
+					<div class="form-group required">
+						
+						<label>Uloga: </label>
+						<select class="form-control" name="role">
+							<option value="2" selected>Korisnik</option>
+							<option value="1">Administrator</option>
+						</select><br>
 					
 					</div>
 					

@@ -39,6 +39,8 @@
 						<th>Ime</th>
 						<th>Email</th>
 						<th>Telefon</th>
+						<th>Broj postavljenih oglasa</th>
+						<th>Uloga</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -52,6 +54,8 @@
 							<td>{{ $user->name }}</td>
 							<td>{{ $user->email }}</td>
 							<td>{{ $user->phone }}</td>
+							<td>{{ $user->cars_count }}</td>
+							<td>{{ $user->hasRole('admin') ? 'Administrator' : 'Korisnik' }}</td>
 							<td><a href="{{ route( 'admin_edit_user', $user->id ) }}"><input type="button"
 							                                                                 class="btn btn-info"
 							                                                                 value="Izmeni"></a></td>

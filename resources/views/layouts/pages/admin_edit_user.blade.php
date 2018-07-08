@@ -37,9 +37,15 @@
 			
 			<div class="col-md-12">
 				
-				<h1 class="page-header">
-					<small>Profil korisnika {{ $user->name }}</small>
-				</h1>
+				@if ( $user->hasRole('admin'))
+					<h1 class="page-header">
+						<small>Profil korisnika {{ $user->name }} ( Administrator )</small>
+					</h1>
+				@else
+					<h1 class="page-header">
+						<small>Profil korisnika {{ $user->name }} ( Korisnik )</small>
+					</h1>
+				@endif
 			
 			</div>
 			<br>

@@ -4,6 +4,7 @@ use App\Car;
 use App\Mail\NewUserInfo;
 use App\Mail\SendEmailToOwner;
 use App\User;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -84,16 +85,45 @@ class HomeController extends Controller
 	
 	public function newUser( Request $request )
 	{
+		$messages = [
+			'name.required'        => 'Morate uneti Vase ime!',
+			'email.required'       => 'Morate uneti Vasu email adresu!',
+			'email.email'          => 'Email adresa nije u dobrom formatu!',
+			'email.unique'         => 'Unete email adresa vec postoji!',
+			'password.required'    => 'Morate uneti Vasu lozinku!',
+			'password.min'         => 'Lozinka mora imati najmanje 6 karaktera!',
+			'phone.digits_between' => 'Unet broj telefona nije u dobrom formatu!',
+			'role.required'        => 'Morate uneti ulogu novog korisnika!',
+		];
+		
+		// Validation
+		
+		$this->validate( $request, [
+			'name'     => 'required',
+			'email'    => 'required|email|unique:users,email',
+			'password' => 'required|min:6',
+			'phone'    => 'nullable|sometimes|digits_between:5,15',
+			'role'     => 'required',
+		], $messages );
+		
+		
 		$email    = $request->input( 'email' );
 		$password = $request->input( 'password' );
+		$role_id  = $request->input( 'role' );
+		$role     = $role_id == 1 ? 'Administrator' : 'Korisnik';
 		
 		$request->merge( [ 'password' => bcrypt( $request->input( 'password' ) ) ] );
 		
-		User::create( $request->all() );
+		$user = User::create( $request->all() );
+		
+		DB::table( 'users_roles' )->insert( [
+			'user_id' => $user->id,
+			'role_id' => $role_id,
+		] );
 		
 		$request->session()->flash( 'alert-success', 'Uspesno ste kreirali novog korisnika!' );
 		
-		Mail::to( 'nenad.dimic34@gmail.com' )->send( new NewUserInfo( $email, $password ) );
+		Mail::to( 'nenad.dimic34@gmail.com' )->send( new NewUserInfo( $email, $password, $role ) );
 		
 		return redirect()->route( 'admin_users' );
 	}
