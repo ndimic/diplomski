@@ -37,8 +37,8 @@ Route::get( '/add/car', 'CarsController@addCar' )->name( 'add_car' )->middleware
 Route::post( '/saveCar', 'CarsController@saveCar' );
 Route::get( '/admin/cars', 'CarsController@adminListCars' )->name( 'admin_cars' )->middleware( 'auth', 'admin' );
 Route::get( '/admin/users', 'HomeController@users' )->name( 'admin_users' )->middleware( 'auth', 'admin' );
-Route::get( '/admin/edit/user/{id}', 'HomeController@adminEditUser' )->name( 'admin_edit_user' );
-Route::get( '/admin/new/user', 'HomeController@adminNewUser' )->name( 'admin_new_user' );
+Route::get( '/admin/edit/user/{id}', 'HomeController@adminEditUser' )->name( 'admin_edit_user' )->middleware( 'auth', 'admin' );
+Route::get( '/admin/new/user', 'HomeController@adminNewUser' )->name( 'admin_new_user' )->middleware( 'auth', 'admin' );
 Route::post( '/newUser', 'HomeController@newUser' )->name( 'new_user' );
 Route::post( '/editUser', 'HomeController@editUser' )->name( 'edit_user' );
 Route::get( '/delete/user/{id}', 'HomeController@deleteUser' )->name( 'delete_user' );

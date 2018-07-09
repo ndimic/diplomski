@@ -48,11 +48,35 @@ class HomeController extends Controller
 	
 	public function editUser( Request $request )
 	{
-		$id = $request->input( 'user_id' );
+		$messages = [
+			'name.required'        => 'Morate uneti Vase ime!',
+			'email.required'       => 'Morate uneti Vasu email adresu!',
+			'email.email'          => 'Email adresa nije u dobrom formatu!',
+			'email.unique'         => 'Uneta email adresa vec postoji!',
+			'phone.digits_between' => 'Unet broj telefona nije u dobrom formatu!',
+			'role.required'        => 'Morate uneti ulogu novog korisnika!',
+		];
+		
+		// Validation
+		
+		$this->validate( $request, [
+			'name'  => 'required',
+			'email' => 'required|email',
+			'phone' => 'nullable|sometimes|digits_between:5,15',
+			'role'  => 'required',
+		], $messages );
+		
+		$id      = $request->input( 'user_id' );
+		$role_id = $request->input( 'role' );
 		
 		$user = User::find( $id );
 		
 		$user->update( $request->all() );
+		
+		DB::table( 'users_roles' )->where( 'user_id', $user->id )->update( [
+			'user_id' => $user->id,
+			'role_id' => $role_id,
+		] );
 		
 		$request->session()->flash( 'alert-success', 'Uspesno ste izmenili korisnika!' );
 		

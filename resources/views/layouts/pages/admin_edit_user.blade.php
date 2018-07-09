@@ -80,6 +80,16 @@
 					
 					</div>
 					
+					<div class="form-group required">
+						
+						<label>Uloga: </label>
+						<select class="form-control" name="role">
+							<option value="2" selected>Korisnik</option>
+							<option value="1">Administrator</option>
+						</select><br>
+					
+					</div>
+					
 					<input type="hidden" name="user_id" value="{{ $user->id }}">
 					
 					<button type="submit" class="form-control btn btn-success">Sačuvaj</button>
