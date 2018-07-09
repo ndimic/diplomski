@@ -45,7 +45,7 @@
 						
 						<option name="car_year" value="0">Izaberite godinu proizvodnje...</option>
 						
-						@for ( $i = 1980; $i <= 2017; $i++ )
+						@for ( $i = 1980; $i <= 2018; $i++ )
 							<option value="{{ $i }}" {{ $i == $car->year ? "selected" : "" }}>{{ $i }}</option>
 						@endfor
 					

@@ -94,7 +94,7 @@
 						<label>Godište: </label>
 						<select class="form-control" name="car_year_id">
 							<option name="car_year" value="">Izaberite godinu proizvodnje...</option>
-							@for ( $i = 1980; $i <= 2017; $i++ )
+							@for ( $i = 1980; $i <= 2018; $i++ )
 								
 								@if ( \Illuminate\Support\Facades\Input::old('car_year_id') == $i )
 									
