@@ -73,10 +73,23 @@ class HomeController extends Controller
 		
 		$user->update( $request->all() );
 		
-		DB::table( 'users_roles' )->where( 'user_id', $user->id )->update( [
-			'user_id' => $user->id,
-			'role_id' => $role_id,
-		] );
+		$user_role = DB::table( 'users_roles' )->where( 'user_id', $user->id )->get();
+		
+		if ( count( $user_role ) ) {
+			
+			DB::table( 'users_roles' )->where( 'user_id', $user->id )->update( [
+				'user_id' => $user->id,
+				'role_id' => $role_id,
+			] );
+			
+		} else {
+			
+			DB::table( 'users_roles' )->insert( [
+				'user_id' => $user->id,
+				'role_id' => $role_id,
+			] );
+		}
+		
 		
 		$request->session()->flash( 'alert-success', 'Uspesno ste izmenili korisnika!' );
 		
