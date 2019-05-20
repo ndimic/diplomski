@@ -40,26 +40,24 @@
 		
 		<div style="margin-top: 80px;" class="col-md-4" align="center">
 			
-			@if(isset($randomCars[0]))
-				@if ($randomCars[0]->default == 1)
-					
-					<a href="{{ 'car/' . $randomCars[0]->id }}" style="color: black;">
-						<img align="center" class="img-responsive"
-						     src="{{ url( '/images/' .$randomCars[0]->image ) }}"
-						     alt="" width="200" height="200">
-					</a>
-					<h4>{{ $randomCars[0]->name }}</h4>
+			@if ($randomCars[0]->default == 1)
 				
-				@else
-					
-					<a href="{{ 'car/' . $randomCars[0]->id }}" style="color: black;">
-						<img align="center" class="img-responsive"
-						     src="{{ url( '/storage/car_uploads/' .$randomCars[0]->image ) }}"
-						     alt="" width="200" height="200">
-					</a>
-					<h4>{{ $randomCars[0]->name }}</h4>
+				<a href="{{ 'car/' . $randomCars[0]->id }}" style="color: black;">
+					<img align="center" class="img-responsive"
+					     src="{{ url( '/images/' .$randomCars[0]->image ) }}"
+					     alt="" width="200" height="200">
+				</a>
+				<h4>{{ $randomCars[0]->name }}</h4>
+			
+			@else
 				
-				@endif
+				<a href="{{ 'car/' . $randomCars[0]->id }}" style="color: black;">
+					<img align="center" class="img-responsive"
+					     src="{{ url( '/storage/car_uploads/' .$randomCars[0]->image ) }}"
+					     alt="" width="200" height="200">
+				</a>
+				<h4>{{ $randomCars[0]->name }}</h4>
+			
 			@endif
 		
 		</div>
